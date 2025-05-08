@@ -5,5 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+  <Target Name="BuildCss" BeforeTargets="compile">
+    <Exec command="npm run build:css" />
+  </Target>
 
 </Project>
