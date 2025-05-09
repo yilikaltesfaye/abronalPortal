@@ -1,4 +1,4 @@
-@import "tailwindcss";
+/* @import "tailwindcss"; */
 
 
 :root {
@@ -43,4 +43,22 @@
     --pinterest: #3b5998;
     --youtube: #c4302b;
     --skype: #00aff0;
+}
+
+@font-face {
+  font-family: "remixicon";
+  src: url('font/remixicon.eot?t=1734404658139'); /* IE9*/
+  src: url('font/remixicon.eot?t=1734404658139#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url("font/remixicon.woff2?t=1734404658139") format("woff2"),
+  url("font/remixicon.woff?t=1734404658139") format("woff"),
+  url('font/remixicon.ttf?t=1734404658139') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('font/remixicon.svg?t=1734404658139#remixicon') format('svg'); /* iOS 4.1- */
+  font-display: swap;
+}
+
+[class^="ri-"], [class*=" ri-"] {
+  font-family: 'remixicon' !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

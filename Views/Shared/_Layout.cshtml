@@ -3,22 +3,59 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Abronal Internship Portal</title>
+    <title>@ViewData["Title"]Abronal Internship Portal</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
-    <link rel="shortcut icon" type="image/x-icon" href="https://abronal.com/website/img/favicon.png" />
+    <link rel="stylesheet" href="~/css/remixicon.css" asp-append-version="true" />
+    @* <link rel="shortcut icon" type="image/x-icon" href="https://abronal.com/website/img/favicon.png" /> *@
+    @* <link rel="shortcut icon" type="image/x-icon" href="~/logo.png" /> *@
 </head>
 <body>
-    <header>
-        <nav>
-            <a asp-area="" asp-controller="Home" asp-action="Index" >
-                <img src="https://abronal.com/website/img/logo/logo.png" class="w-30" alt="" srcset="">
-            </a>
-            <ul>
-                <li>
-                    <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                </li>
-            </ul>
+    <header class="p-4">
+        <nav id="desktopNav" class="lg:block">
+            <div class="flex items-center justify-between">
+                <a asp-area="" asp-controller="Home" asp-action="Index" >
+                    <img src="~/logo.png" class="w-36" alt="" srcset="">
+                </a>
+                <i class="ri-menu-line text-3xl lg:hidden cursor-pointer" id="openNav"></i>
+                @* Desktop View *@
+                <ul class="hidden lg:flex">
+                    <li>
+                        <a asp-area="" asp-controller="Home" asp-action="Privacy">Apply</a>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-controller="Home" asp-action="Privacy">Terms</a>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+        @* mobile view *@
+        <nav id="mobileNav" class="hidden lg:hidden" >
+            <div class="fixed inset-0 p-4 bg-white z-30 transform transition-transform duration-300 ease-in-out lg:hidden flex flex-col">
+                <div class="flex items-center justify-between">
+                    <a asp-area="" asp-controller="Home" asp-action="Index" >
+                        <img src="~/logo.png" class="w-36" alt="logo" srcset="">
+                    </a>
+                    <i class="ri-close-line text-3xl lg:hidden cursor-pointer" id="closeNav"></i>
+                </div>
+                <div class="">
+                    <ul>
+                        <li>
+                            <a asp-area="" asp-controller="Home" asp-action="Privacy">Apply</a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="Home" asp-action="Privacy">Terms</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </header>
     <div>
@@ -29,7 +66,7 @@
 
     <footer>
         <div>
-            &copy; 2025 - Portal - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <p>&copy; 2025 - Abronal Technologies Internship Portal - <a asp-area="" asp-controller="Home" asp-action="Privacy">Terms</a></p>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
