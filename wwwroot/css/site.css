@@ -1,46 +1,52 @@
 @import "tailwindcss";
 
-
+html {
+    scroll-behavior: smooth;
+}
 :root {
-    --tg-body-font-family: 'Plus Jakarta Sans', sans-serif;
-    --tg-heading-font-family: 'Urbanist', sans-serif;
-    --tg-primary-color: #248dcd;
-    --tg-secondary-color: #0f1d41;
-    --tg-body-font-color: #334770;
-    --tg-heading-font-color: #00194C;
-    --tg-paragraph-color: #334770;
-    --tg-section-background: #F8FAFF;
-    --tg-body-font-size: 16px;
-    --tg-body-font-weight: 500;
     --tg-heading-font-weight: 700;
     --tg-body-line-height: 1.62;
     --tg-heading-line-height: 1.2;
     --tg-text-transform: capitalize;
-    --tg-blue: #f7931e;
-    --tg-metallic-blue: #324B7D;
-    --tg-cornflower-blue: #B3CCFF;
-    --tg-steel-blue: #B6C1DB;
-    --tg-lavender: #E6EEFF;
-    --tg-indigo: #6610f2;
-    --tg-purple: #6f42c1;
-    --tg-pink: #FF005C;
-    --tg-red: #FF3C3C;
-    --tg-orange: #fd7e14;
-    --tg-yellow: #FFB930;
-    --tg-green: #219653;
-    --tg-teal: #20c997;
-    --tg-cyan: #0dcaf0;
-    --tg-white: #ffffff;
-    --tg-black: #000;
-    --tg-gray: #F1F4FC;
-    --tg-gray-two: #F1F5FF;
-    --tg-gray-three: #96A1B8;
-    --tg-gray-four: #667594;
-    --tg-border-color: #E1E5EE;
-    --facebook: #3b5998;
-    --twitter: #00acee;
-    --linkedin: #1976d2;
-    --pinterest: #3b5998;
-    --youtube: #c4302b;
-    --skype: #00aff0;
+}
+@theme {
+    --text-base: 16px;
+    --font-default-font: 'Plus Jakarta Sans', sans-serif;
+    --font-heading-font-family: 'Urbanist', sans-serif;
+    --color-primary: #248dcd;
+    --color-secondary: #0f1d41;
+    --color-body-font: #334770;
+    --color-heading-font: #00194C;
+    --color-paragraph: #334770;
+    --color-section-background: #F8FAFF;
+    --color-blue: #f7931e;
+    --color-metallic-blue: #324B7D;
+    --color-cornflower-blue: #B3CCFF;
+    --color-steel-blue: #B6C1DB;
+    --color-lavender: #E6EEFF;
+    --color-indigo: #6610f2;
+    --color-purple: #6f42c1;
+    --color-pink: #FF005C;
+    --color-red: #FF3C3C;
+    --color-orange: #fd7e14;
+    --color-yellow: #FFB930;
+    --color-green: #219653;
+    --color-teal: #20c997;
+    --color-cyan: #0dcaf0;
+    --color-white: #ffffff;
+    --color-black: #000;
+    --color-gray: #F1F4FC;
+    --color-gray-two: #F1F5FF;
+    --color-gray-three: #96A1B8;
+    --color-gray-four: #667594;
+    --color-border-color: #E1E5EE;
+    --color-facebook: #3b5998;
+    --color-twitter: #00acee;
+    --color-linkedin: #1976d2;
+    --color-pinterest: #3b5998;
+    --color-youtube: #c4302b;
+    --color-skype: #00aff0;
+}
+body {
+    @apply font-default-font text-base font-medium capitalize text-secondary;
 }

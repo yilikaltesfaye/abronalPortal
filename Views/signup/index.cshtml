@@ -1,0 +1,79 @@
+@{
+    ViewData["Title"] = "Login - ";
+}
+
+<div class="flex z-0 flex-col xl:px-40 justify-center items-center bg-steel-blue object-contain min-h-[86vh]">
+    <div class="bg-white rounded-2xl flex-col flex my-5 gap-6 px-5 sm:px-20 py-2 sm:py-8 shadow-2xl sm:min-w-xl">
+        <div class="text-center flex-col flex sm:gap-2">
+            <h1 class="text-3xl sm:text-4xl">Welcome</h1>
+            <p class="text-lg sm:text-2xl">Join Now</p>
+        </div>
+        <form class="flex flex-col gap-3 sm:gap-5">
+            <div class="flex flex-col gap-3">
+                <label for="givenname" class="text-lg sm:text-xl">Given Name</label>
+                <input
+                type="text"
+                id="givenname"
+                placeholder="Your Given Name"
+                required
+                class="outline-0 py-1 pl-3 font-bold capitalize rounded bg-white border"
+                />
+            </div>
+            <div class="flex flex-col gap-3">
+                <label for="fathername" class="text-lg sm:text-xl">Father's Name</label>
+                <input
+                type="text"
+                id="fathername"
+                placeholder="Your Father's Name"
+                required
+                class="outline-0 py-1 pl-3 font-bold capitalize rounded bg-white border"
+                />
+            </div>
+            <div class="flex flex-col gap-3">
+                <label for="lastname" class="text-lg sm:text-xl">Surname</label>
+                <input
+                type="text"
+                id="lastname"
+                placeholder="Your Grandfather's Name"
+                required
+                class="outline-0 py-1 pl-3 font-bold capitalize rounded bg-white border"
+                />
+            </div>
+            <div class="flex flex-col gap-3">
+                <label for="email" class="text-lg sm:text-xl">Email</label>
+                <input
+                type="email"
+                id="email"
+                placeholder="Your Email Address"
+                required
+                class="outline-0 py-1 pl-3 font-bold capitalize rounded bg-white border"
+                />
+            </div>
+            <div class="flex flex-col gap-3">
+                <label for="password" class="text-lg sm:text-xl">Password</label>
+                <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                required
+                class="outline-0 py-1 pl-3 font-bold capitalize rounded bg-white border"
+                />
+            </div>
+            <div class="flex flex-col gap-3">
+                <label for="profilepicture" class="text-xl">Profile Picture</label>
+                <input
+                type="file"
+                id="profilepicture"
+                required
+                class="outline-0 py-1 pl-3 border rounded font-bold capitalize cursor-pointer"
+                />
+            </div>
+            <div class="w-full mt-6">
+                @* <a href="" > *@
+                    <button type="submit" class="flex w-full justify-center text-lg px-10 rounded-2xl py-2 border-2 bg-[#1B2240] border-[#1B2240] text-white cursor-pointer hover:bg-inherit hover:text-[#1B2240] transition-all duration-200 ease-in">Join</button>
+                @* </a> *@
+            </div>
+        </form>
+        <p class="text-center">Already Joined? <a asp-area="" asp-controller="login" asp-action="index"  class="underline hover:underline-offset-4 font-semibold">Login</a></p>
+    </div>
+</div>

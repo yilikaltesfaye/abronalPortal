@@ -2,7 +2,21 @@
     ViewData["Title"] = "Home - ";
 }
 
-<div class="flex flex-col">
-    <h1>Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="flex flex-col xl:flex-row gap-30 xl:gap-36 xl:px-40 justify-center xl:justify-start items-center bg-steel-blue object-contain h-[70vh]">
+    <div class="flex flex-col gap-15">   
+        <div class="flex flex-col gap-5">
+            <h1 class="text-3xl text-center sm:text-start sm:text-5xl md:text-6xl text-wrap">Abornal Internship Program</h1>
+            
+            <p class="text-paragraph text-center sm:text-start self-center xl:self-auto">Place where you will hone your skills</p>
+            
+        </div>
+        <a asp-controller="apply" asp-action="index" class="self-center xl:self-auto">
+            <button 
+                class="flex items-center text-lg w-fit px-10 rounded-2xl py-2 border-2 bg-[#1B2240] border-[#1B2240] text-white cursor-pointer hover:bg-inherit hover:text-[#1B2240] transition-all duration-200 ease-in"
+            >
+                Apply
+            </button>
+        </a>
+    </div>
+    <div></div>
 </div>

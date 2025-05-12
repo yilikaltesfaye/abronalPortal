@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/font/remixicon.css" asp-append-version="true" />
-    @* <link rel="shortcut icon" type="image/x-icon" href="https://abronal.com/website/img/favicon.png" /> *@
-    @* <link rel="shortcut icon" type="image/x-icon" href="~/logo.png" /> *@
+    <link rel="shortcut icon" type="image/x-icon" href="https://abronal.com/website/img/favicon.png" />
 </head>
-<body class="text-[#1B2240] flex flex-col">
-    <header class="p-4">
-        <nav id="desktopNav" class="lg:block">
+<body class="grid min-h-screen">
+    
+    <header class="p-4 fixed w-full bg-white bg-opacity-95 shadow-sm">
+        <nav id="desktopNav" class="md:block">
             <div class="flex items-center justify-between md:justify-around">
                 <a asp-area="" asp-controller="home" asp-action="index" >
                     <img src="~/logo.png" class="w-36" alt="" srcset="">
@@ -31,7 +31,7 @@
                     </li>
                     <a asp-controller="apply" asp-action="index">
                         <button
-                            class="flex items-center text-lg w-fit px-7 py-2  border bg-[#1B2240] border-[#1B2240] text-white cursor-pointer"
+                            class="flex items-center text-lg w-fit px-7 py-2  border bg-[#1B2240] border-[#1B2240] text-white cursor-pointer hover:bg-inherit hover:text-[#1B2240] transition-all duration-200 ease-in"
                         >
                             Apply
                         </button>
@@ -66,19 +66,20 @@
             </div>
         </nav>
     </header>
-    <div class="flex-1">
-        <main role="main">
-            @RenderBody()
-        </main>
-    </div>
+    
+    <main role="main" class="mt-[68px] md:mt-[78px]">
+        @RenderBody()
+    </main>
 
-    <footer class="justify-self-end">
+    <footer class="text-center py-3 self-end">
         <div>
-            <p>&copy; 2025 - Abronal Technologies Internship Portal - <a asp-area="" asp-controller="Home" asp-action="Privacy">Terms</a></p>
+            <p>&copy; 2025 - Abronal Technologies - <a asp-area="" asp-controller="home" asp-action="terms" class="underline font-bold hover:underline-offset-4">Terms</a></p>
         </div>
     </footer>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
