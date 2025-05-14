@@ -29,17 +29,19 @@ public partial class AbronalPortalDbContext : DbContext
 
     public virtual DbSet<UserType> UserTypes { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {}
-// #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-//         => optionsBuilder.UseSqlServer("Server=localhost;Database=abronalPortalDB;Trusted_Connection=True;TrustServerCertificate=True;");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=localhost;Database=abronalPortalDB;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<ApplicantTestProject>(entity =>
         {
-            entity.HasKey(e => e.ApplicantTestProjectId).HasName("PK__Applican__7D28F6B2616F8143");
+            entity.HasKey(e => e.ApplicantTestProjectId).HasName("PK__Applican__7D28F6B27B6C5D32");
 
-            entity.HasIndex(e => e.ApplicationId, "UQ__Applican__C93A4C98EFB4F738").IsUnique();
+            entity.HasIndex(e => e.ApplicationId, "UQ_ApplicationId").IsUnique();
+
+            entity.HasIndex(e => e.ApplicationId, "UQ__Applican__C93A4C98A778DA64").IsUnique();
 
             entity.Property(e => e.AssignedDate)
                 .HasDefaultValueSql("(getdate())")
@@ -54,20 +56,22 @@ public partial class AbronalPortalDbContext : DbContext
 
             entity.HasOne(d => d.Application).WithOne(p => p.ApplicantTestProject)
                 .HasForeignKey<ApplicantTestProject>(d => d.ApplicationId)
-                .HasConstraintName("FK__Applicant__Appli__02FC7413");
+                .HasConstraintName("FK__Applicant__Appli__73BA3083");
 
             entity.HasOne(d => d.CurrentStatus).WithMany(p => p.ApplicantTestProjects)
                 .HasForeignKey(d => d.CurrentStatusId)
-                .HasConstraintName("FK__Applicant__Curre__05D8E0BE");
+                .HasConstraintName("FK__Applicant__Curre__76969D2E");
 
             entity.HasOne(d => d.Template).WithMany(p => p.ApplicantTestProjects)
                 .HasForeignKey(d => d.TemplateId)
-                .HasConstraintName("FK__Applicant__Templ__03F0984C");
+                .HasConstraintName("FK__Applicant__Templ__74AE54BC");
         });
 
         modelBuilder.Entity<Application>(entity =>
         {
-            entity.HasKey(e => e.ApplicationId).HasName("PK__Applicat__C93A4C99EC1C900C");
+            entity.HasKey(e => e.ApplicationId).HasName("PK__Applicat__C93A4C9954506627");
+
+            entity.ToTable(tb => tb.HasTrigger("trg_UpdateLastUpdated"));
 
             entity.Property(e => e.Address).HasMaxLength(100);
             entity.Property(e => e.Bio).HasMaxLength(500);
@@ -88,7 +92,7 @@ public partial class AbronalPortalDbContext : DbContext
             entity.Property(e => e.LeetCodeProfileLink).HasMaxLength(200);
             entity.Property(e => e.LinkedInProfileLink).HasMaxLength(200);
             entity.Property(e => e.Major).HasMaxLength(100);
-            entity.Property(e => e.PhoneNumber).HasMaxLength(20);
+            entity.Property(e => e.PhoneNumber).HasMaxLength(15);
             entity.Property(e => e.PortfolioSiteLink).HasMaxLength(200);
             entity.Property(e => e.ResumePath).HasMaxLength(255);
             entity.Property(e => e.Skills).HasMaxLength(500);
@@ -97,29 +101,27 @@ public partial class AbronalPortalDbContext : DbContext
 
             entity.HasOne(d => d.CurrentStatus).WithMany(p => p.Applications)
                 .HasForeignKey(d => d.CurrentStatusId)
-                .HasConstraintName("FK__Applicati__Curre__778AC167");
+                .HasConstraintName("FK__Applicati__Curre__59FA5E80");
 
             entity.HasOne(d => d.User).WithMany(p => p.Applications)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Applicati__UserI__76969D2E");
+                .HasConstraintName("FK__Applicati__UserI__59063A47");
         });
 
         modelBuilder.Entity<ApplicationStatus>(entity =>
         {
-            entity.HasKey(e => e.StatusId).HasName("PK__Applicat__C8EE206397C8014D");
+            entity.HasKey(e => e.StatusId).HasName("PK__Applicat__C8EE20630BE9EDD6");
 
             entity.ToTable("ApplicationStatus");
 
-            entity.HasIndex(e => e.StatusName, "UQ__Applicat__05E7698A6DC77E36").IsUnique();
+            entity.HasIndex(e => e.StatusName, "UQ__Applicat__05E7698A8F92BBE4").IsUnique();
 
             entity.Property(e => e.StatusName).HasMaxLength(20);
         });
 
         modelBuilder.Entity<Decision>(entity =>
         {
-            entity.HasKey(e => e.DecisionId).HasName("PK__Decision__C0F289864B37D5D9");
-
-            entity.ToTable(tb => tb.HasTrigger("UpdateApplicationStatusAfterDecision"));
+            entity.HasKey(e => e.DecisionId).HasName("PK__Decision__C0F2898608861C2F");
 
             entity.Property(e => e.DecisionDate)
                 .HasDefaultValueSql("(getdate())")
@@ -130,20 +132,20 @@ public partial class AbronalPortalDbContext : DbContext
 
             entity.HasOne(d => d.Admin).WithMany(p => p.Decisions)
                 .HasForeignKey(d => d.AdminId)
-                .HasConstraintName("FK__Decisions__Admin__0A9D95DB");
+                .HasConstraintName("FK__Decisions__Admin__7B5B524B");
 
             entity.HasOne(d => d.Application).WithMany(p => p.Decisions)
                 .HasForeignKey(d => d.ApplicationId)
-                .HasConstraintName("FK__Decisions__Appli__09A971A2");
+                .HasConstraintName("FK__Decisions__Appli__7A672E12");
 
             entity.HasOne(d => d.NewStatus).WithMany(p => p.Decisions)
                 .HasForeignKey(d => d.NewStatusId)
-                .HasConstraintName("FK__Decisions__NewSt__0C85DE4D");
+                .HasConstraintName("FK__Decisions__NewSt__7D439ABD");
         });
 
         modelBuilder.Entity<TestProjectTemplate>(entity =>
         {
-            entity.HasKey(e => e.TemplateId).HasName("PK__TestProj__F87ADD273582EA91");
+            entity.HasKey(e => e.TemplateId).HasName("PK__TestProj__F87ADD27371622AB");
 
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")
@@ -153,20 +155,14 @@ public partial class AbronalPortalDbContext : DbContext
 
             entity.HasOne(d => d.CreatedByAdmin).WithMany(p => p.TestProjectTemplates)
                 .HasForeignKey(d => d.CreatedByAdminId)
-                .HasConstraintName("FK__TestProje__Creat__7E37BEF6");
+                .HasConstraintName("FK__TestProje__Creat__60A75C0F");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CC4CAA604415");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CC4C41E3FDA0");
 
-            entity.HasIndex(e => e.GivenName, "UQ__Users__79FA70BFC4EDC5F9").IsUnique();
-
-            entity.HasIndex(e => e.Email, "UQ__Users__A9D10534E56301E2").IsUnique();
-
-            entity.HasIndex(e => e.GrandFatherName, "UQ__Users__E2D003ED377B2DA0").IsUnique();
-
-            entity.HasIndex(e => e.FatherName, "UQ__Users__FB20DD61EB8CE6E4").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__Users__A9D10534D4A5C974").IsUnique();
 
             entity.Property(e => e.AccountCreatedAt)
                 .HasDefaultValueSql("(getdate())")
@@ -185,14 +181,14 @@ public partial class AbronalPortalDbContext : DbContext
 
             entity.HasOne(d => d.UserType).WithMany(p => p.Users)
                 .HasForeignKey(d => d.UserTypeId)
-                .HasConstraintName("FK__Users__UserTypeI__71D1E811");
+                .HasConstraintName("FK__Users__UserTypeI__5165187F");
         });
 
         modelBuilder.Entity<UserType>(entity =>
         {
-            entity.HasKey(e => e.UserTypeId).HasName("PK__UserType__FA6C4C3C5BADDEEC");
+            entity.HasKey(e => e.UserTypeId).HasName("PK__UserType__40D2D8166CF40164");
 
-            entity.HasIndex(e => e.TypeName, "UQ__UserType__D4E7DFA8BBA5BFE9").IsUnique();
+            entity.HasIndex(e => e.TypeName, "UQ__UserType__D4E7DFA8206FD884").IsUnique();
 
             entity.Property(e => e.TypeName).HasMaxLength(50);
         });
