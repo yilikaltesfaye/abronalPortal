@@ -11,7 +11,7 @@
             <h1 class="text-3xl sm:text-4xl">Welcome Back</h1>
             <p class="text-lg sm:text-2xl">Login Here</p>
         </div>
-        <form class="flex flex-col gap-3 sm:gap-5" asp-action="login" method="post">
+        <form class="flex flex-col gap-3 sm:gap-5" asp-action="Index" method="post">
             @Html.AntiForgeryToken()
             <div asp-asp-validation-summary="modelOnly" class="bg-red text-white"></div>
             <div class="flex flex-col gap-3">
@@ -37,6 +37,11 @@
                 <span asp-validation-for="Password" class="bg-red text-white"></span>
             </div>
             <div class="flex items-center gap-2">
+                <input type="checkbox" asp-for="RememberMe" class="w-4 h-4" />
+                <label asp-for="RememberMe" class="text-lg sm:text-xl">@Html.DisplayNameFor(a => a.RememberMe)</label>
+
+            </div>
+            <div class="flex items-center gap-2">
                 <a asp-area="" asp-controller="login" asp-action="forgotpassword" class="text-lg sm:text-xl underline">Forgot Password?</a>
             </div>
             <div class="w-full mt-6">
@@ -45,8 +50,8 @@
                 </a>
             </div>
         </form>
-        <p class="text-center">Don't have an account? <a asp-area="" asp-controller="signup" asp-action="index" class="underline hover:underline-offset-4 font-semibold">Register</a></p>
-        <p class="text-center">Don't have an account? <a asp-area="" asp-controller="home" asp-action="index" class="underline hover:underline-offset-4 font-semibold">Back Home</a></p>
+        <p class="text-center">Don't have an account? <a asp-area="" asp-controller="SignUp" asp-action="Index" class="underline hover:underline-offset-4 font-semibold">Register</a></p>
+        <p class="text-center">Go <a asp-area="" asp-controller="Gome" asp-action="Index" class="underline hover:underline-offset-4 font-semibold">Back Home</a></p>
         
     </div>
 </div>

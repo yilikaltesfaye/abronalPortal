@@ -1,5 +1,6 @@
 @{
-    ViewData["Title"] = "Login - ";
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
 }
 
 <div class="flex z-0 flex-col xl:px-40 justify-center items-center bg-steel-blue object-contain min-h-[86vh]">
@@ -72,6 +73,6 @@
                     <button type="submit" class="flex w-full justify-center text-lg px-10 rounded-2xl py-2 border-2 bg-[#1B2240] border-[#1B2240] text-white cursor-pointer hover:bg-inherit hover:text-[#1B2240] transition-all duration-200 ease-in">Join</button>
             </div>
         </form>
-        <p class="text-center">Already Joined? <a asp-area="" asp-controller="login" asp-action="index"  class="underline hover:underline-offset-4 font-semibold">Login</a></p>
+        <p class="text-center">Already Joined? <a asp-area="" asp-controller="Auth" asp-action="Login"  class="underline hover:underline-offset-4 font-semibold">Login</a></p>
     </div>
 </div>
