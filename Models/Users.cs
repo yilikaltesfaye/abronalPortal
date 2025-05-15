@@ -6,6 +6,6 @@ namespace abronalPortal.Models
     public class Users : IdentityUser
     {
         public string Fullname { get; set;}
-        public string ProfilePicturePath { get; set;}
+        public string? ProfilePicturePath { get; set;}
     }
 }
