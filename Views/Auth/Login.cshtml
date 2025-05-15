@@ -11,9 +11,11 @@
             <h1 class="text-3xl sm:text-4xl">Welcome Back</h1>
             <p class="text-lg sm:text-2xl">Login Here</p>
         </div>
-        <form class="flex flex-col gap-3 sm:gap-5" asp-action="Index" method="post">
+                <form asp-action="Login" method="post">
+
+        @* <form class="flex flex-col gap-3 sm:gap-5" asp-action="Login" method="post"> *@
             @Html.AntiForgeryToken()
-            <div asp-asp-validation-summary="modelOnly" class="bg-red text-white"></div>
+            <div asp-validation-summary="ModelOnly" class="bg-red text-white"></div>
             <div class="flex flex-col gap-3">
                 <label asp-for="Email" class="text-lg sm:text-xl">Email</label>
                 <input
@@ -45,9 +47,7 @@
                 <a asp-area="" asp-controller="login" asp-action="forgotpassword" class="text-lg sm:text-xl underline">Forgot Password?</a>
             </div>
             <div class="w-full mt-6">
-                <a href="" >
-                    <input type="submit" class="flex w-full justify-center text-lg px-10 rounded-2xl py-2 border-2 bg-[#1B2240] border-[#1B2240] text-white cursor-pointer hover:bg-inherit hover:text-[#1B2240] transition-all duration-200 ease-in" value="Log In" />
-                </a>
+                    <input type="submit" class="flex w-full justify-center text-lg px-10 rounded-2xl py-2 border-2 bg-[#1B2240] border-[#1B2240] text-white cursor-pointer hover:bg-inherit hover:text-[#1B2240] transition-all duration-200 ease-in" value="LogIn" />
             </div>
         </form>
         <p class="text-center">Don't have an account? <a asp-area="" asp-controller="SignUp" asp-action="Index" class="underline hover:underline-offset-4 font-semibold">Register</a></p>
