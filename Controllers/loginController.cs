@@ -1,26 +1,26 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using abronalPortal.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace abronalPortal.Controllers;
 
 public class loginController : Controller
 {
-    private readonly ILogger<loginController> _logger;
+    private readonly SignInManager<Users> signInManager;
+    private readonly UserManager<Users> userManager;
+    private readonly RoleManager<IdentityRole> roleManager;
 
-    public loginController(ILogger<loginController> logger)
+    public loginController(SignInManager<Users> signInManager, UserManager<Users> userManager, RoleManager<IdentityRole> roleManager)
     {
-        _logger = logger;
+        this.signInManager = signInManager;
+        this.userManager = userManager;
+        this.roleManager = roleManager;
     }
-
+    [HttpGet]
     public IActionResult index()
     {
         return View();
     }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
 }
