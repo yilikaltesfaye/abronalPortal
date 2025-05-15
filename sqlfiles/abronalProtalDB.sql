@@ -14,13 +14,12 @@ INSERT INTO UserTypes (TypeName) VALUES ('user'), ('admin');
 
 CREATE TABLE Users (
     UserId INT PRIMARY KEY IDENTITY(1,1),
-    Email NVARCHAR(100) NOT NULL UNIQUE,
-    PasswordHash NVARCHAR(255) NOT NULL,
+    Email NVARCHAR(100) NOT NULL UNIQUE, -- there
+    PasswordHash NVARCHAR(255) NOT NULL, -- there
     ProfilePicturePath NVARCHAR(255),
-    GivenName NVARCHAR(50) NOT NULL UNIQUE,
-    FatherName NVARCHAR(50) NOT NULL UNIQUE,
-    GrandFatherName NVARCHAR(50) NOT NULL UNIQUE,
+    Fullname NVARCHAR(50) NOT NULL UNIQUE,
     AccountCreatedAt DATETIME DEFAULT GETDATE(),
+    PhoneNumber NVARCHAR(20), --there
     UserTypeID INT FOREIGN KEY REFERENCES UserTypes(UserTypeId) DEFAULT 1,
     IsActive BIT DEFAULT 1,
     LastLogin DATETIME,
@@ -43,7 +42,6 @@ CREATE TABLE Applications (
     CurrentStatusId INT FOREIGN KEY REFERENCES ApplicationStatus(StatusId) DEFAULT 1,
     Designation NVARCHAR(100),
     Bio NVARCHAR(500),
-    PhoneNumber NVARCHAR(20),
     Address NVARCHAR(100),
     WillingToRelocate BIT DEFAULT 1, 
     University NVARCHAR(100),
