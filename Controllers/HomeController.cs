@@ -4,25 +4,25 @@ using abronalPortal.Models;
 
 namespace abronalPortal.Controllers;
 
-public class homeController : Controller
+public class HomeController : Controller
 {
-    private readonly ILogger<homeController> _logger;
+    private readonly ILogger<HomeController> _logger;
 
-    public homeController(ILogger<homeController> logger)
+    public HomeController(ILogger<HomeController> logger)
     {
         _logger = logger;
     }
 
-    public IActionResult index()
+    public IActionResult Index()
     {
         return View();
     }
 
-    public IActionResult terms()
+    public IActionResult Terms()
     {
         return View();
     }
-    public IActionResult benefits()
+    public IActionResult Benefits()
     {
         return View();
     }

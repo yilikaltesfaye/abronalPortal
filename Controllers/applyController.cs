@@ -4,11 +4,11 @@ using abronalPortal.Models;
 
 namespace abronalPortal.Controllers;
 
-public class applyController : Controller
+public class ApplyController : Controller
 {
-    private readonly ILogger<applyController> _logger;
+    private readonly ILogger<ApplyController> _logger;
 
-    public applyController(ILogger<applyController> logger)
+    public ApplyController(ILogger<ApplyController> logger)
     {
         _logger = logger;
     }
