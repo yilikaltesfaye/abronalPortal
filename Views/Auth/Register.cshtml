@@ -1,3 +1,5 @@
+@using abronalPortal.ViewModels
+@model RegisterViewModel
 @{
     ViewData["Title"] = "Register";
     Layout = "~/Views/Shared/_AuthLayout.cshtml";
@@ -9,70 +11,76 @@
             <h1 class="text-3xl sm:text-4xl">Welcome</h1>
             <p class="text-lg sm:text-2xl">Join Now</p>
         </div>
-        <form class="flex flex-col gap-3 sm:gap-5">
+        <form class="flex flex-col gap-3 sm:gap-5" asp-action="Register" method="post">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="bg-red text-white"></div>
             <div class="flex flex-col gap-3">
-                <label for="fullname" class="text-lg sm:text-xl">Full Name</label>
+                <label asp-for="Fullname" class="text-lg sm:text-xl">Full Name</label>
                 <input
                 type="text"
-                id="fullname"
+                asp-for="Fullname"
                 placeholder="Your Full Name"
                 required
                 class="outline-0 py-1 pl-3 font-bold rounded bg-white border"
                 />
+                <span asp-validation-for="Fullname" class="bg-red text-white"></span>
             </div>
             <div class="flex flex-col gap-3">
-                <label for="username" class="text-lg sm:text-xl">Username</label>
-                <input
-                type="text"
-                id="username"
-                placeholder="Your Username"
-                required
-                class="outline-0 py-1 pl-3 font-bold rounded bg-white border"
-                />
-            </div>
-            <div class="flex flex-col gap-3">
-                <label for="phone" class="text-lg sm:text-xl">Phone Number</label>
+                <label asp-for="PhoneNumber" class="text-lg sm:text-xl">Phone Number</label>
                 <input
                 type="tel"
-                id="phone"
+                asp-for="PhoneNumber"
                 placeholder="Your Phone Number"
                 required
                 class="outline-0 py-1 pl-3 font-bold rounded bg-white border"
                 /> 
+                <span asp-validation-for="PhoneNumber" class="bg-red text-white"></span>
             </div>
             <div class="flex flex-col gap-3">
-                <label for="email" class="text-lg sm:text-xl">Email</label>
+                <label asp-for="Email" class="text-lg sm:text-xl">Email</label>
                 <input
                 type="email"
-                id="email"
+                asp-for="Email"
                 placeholder="Your Email Address"
                 required
                 class="outline-0 py-1 pl-3 font-bold rounded bg-white border"
                 />
+                <span asp-validation-for="Email" class="bg-red text-white"></span>
             </div>
             <div class="flex flex-col gap-3">
-                <label for="password" class="text-lg sm:text-xl">Password</label>
+                <label asp-for="Password" class="text-lg sm:text-xl">Password</label>
                 <input
                 type="password"
-                id="password"
+                asp-for="Password"
                 placeholder="Password"
                 required
                 class="outline-0 py-1 pl-3 font-bold rounded bg-white border"
                 />
+                <span asp-validation-for="Password" class="bg-red text-white"></span>
             </div>
-            @* <div class="flex flex-col gap-3">
-                <label for="profilepicture" class="text-xl">Profile Picture</label>
+            <div class="flex flex-col gap-3">
+                <label asp-for="ConfirmPassword" class="text-lg sm:text-xl">ConfirmPassword</label>
                 <input
-                type="file"
-                id="profilepicture"
+                type="password"
+                asp-for="ConfirmPassword"
+                placeholder="Password Again"
                 required
-                class="outline-0 py-1 pl-3 border rounded font-bold cursor-pointer"
+                class="outline-0 py-1 pl-3 font-bold rounded bg-white border"
                 />
-            </div> *@
+                <span asp-validation-for="ConfirmPassword" class="bg-red text-white"></span>
+            </div>
             <div class="w-full mt-6">
-                    <button type="submit" class="flex w-full justify-center text-lg px-10 rounded-2xl py-2 border-2 bg-[#1B2240] border-[#1B2240] text-white cursor-pointer hover:bg-inherit hover:text-[#1B2240] transition-all duration-200 ease-in">Join</button>
+                    <input type="submit" class="flex w-full justify-center text-lg px-10 rounded-2xl py-2 border-2 bg-[#1B2240] border-[#1B2240] text-white cursor-pointer hover:bg-inherit hover:text-[#1B2240] transition-all duration-200 ease-in" value="Join">
             </div>
         </form>
         <p class="text-center">Already Joined? <a asp-area="" asp-controller="Auth" asp-action="Login"  class="underline hover:underline-offset-4 font-semibold">Login</a></p>
+        <p class="text-center"><a asp-area="" asp-controller="Gome" asp-action="Index" class="underline hover:underline-offset-4 font-semibold">Back Home</a></p>
+
     </div>
 </div>
+@section Scripts {
+    
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+}
