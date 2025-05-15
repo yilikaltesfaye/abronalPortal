@@ -10,37 +10,42 @@ namespace abronalPortal.Services
         {
             using var scope = serviceProvider.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<AbronalDbContext>();
-            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>(); 
+            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<Users>>();
             var logger = scope.ServiceProvider.GetRequiredService<ILogger<RoleService>>();
 
             try
             {
-                logger.LogInformation("Ensuring database is created...");
+                // Ensure the database is ready
+                logger.LogInformation("Ensuring the database is created.");
                 await context.Database.EnsureCreatedAsync();
 
-                logger.LogInformation("Seeding roles...");
+                // Add roles
+                logger.LogInformation("Seeding roles.");
                 await AddRoleAsync(roleManager, "Admin");
                 await AddRoleAsync(roleManager, "User");
 
+                // Add admin user
+                logger.LogInformation("Seeding admin user.");
                 var adminEmail = "admin@abronal.com";
                 if (await userManager.FindByEmailAsync(adminEmail) == null)
                 {
                     var adminUser = new Users
                     {
-                        UserName = "evaluator",
-                        Email = adminEmail,
                         Fullname = "Application Evaluator",
-                        ProfilePicturePath = "https://abronal.com/website/img/favicon.png",
+                        UserName = adminEmail,
                         NormalizedUserName = adminEmail.ToUpper(),
+                        Email = adminEmail,
                         NormalizedEmail = adminEmail.ToUpper(),
                         EmailConfirmed = true,
-                        SecurityStamp = Guid.NewGuid().ToString(),                        
+                        ProfilePicturePath = "https://abronal.com/website/img/favicon.png",
+                        SecurityStamp = Guid.NewGuid().ToString()
                     };
-                    var result = await userManager.CreateAsync(adminUser, "abronalApply2025");
+
+                    var result = await userManager.CreateAsync(adminUser, "abronalApply@2025");
                     if (result.Succeeded)
                     {
-                        logger.LogInformation("Admin user created successfully.");
+                        logger.LogInformation("Assigning Admin role to the admin user.");
                         await userManager.AddToRoleAsync(adminUser, "Admin");
                     }
                     else
@@ -49,19 +54,24 @@ namespace abronalPortal.Services
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logger.LogError(ex, "An error occurred while seeding the database.");
+
             }
+
         }
+
         private static async Task AddRoleAsync(RoleManager<IdentityRole> roleManager, string roleName)
         {
-            var role = await roleManager.CreateAsync(new IdentityRole(roleName));
-            if(!role.Succeeded)
+            if (!await roleManager.RoleExistsAsync(roleName))
             {
-                throw new Exception($"Failed to create role {roleName}: {string.Join(", ", role.Errors.Select(e => e.Description))}");
+                var result = await roleManager.CreateAsync(new IdentityRole(roleName));
+                if (!result.Succeeded)
+                {
+                    throw new Exception($"Failed to create role '{roleName}': {string.Join(", ", result.Errors.Select(e => e.Description))}");
+                }
             }
-            
         }
     }
 }
