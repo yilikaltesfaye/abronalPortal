@@ -40,6 +40,7 @@
     --color-secondary: #0f1d41;
     --color-paragraph: #334770;
     --color-steel-blue: #B6C1DB;
+    --color-red: #FF3C3C;
   }
 }
 @layer base {
@@ -346,6 +347,9 @@
   .justify-center {
     justify-content: center;
   }
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
+  }
   .gap-3 {
     gap: calc(var(--spacing) * 3);
   }
@@ -397,6 +401,9 @@
   }
   .bg-\[\#1B2240\] {
     background-color: #1B2240;
+  }
+  .bg-red {
+    background-color: var(--color-red);
   }
   .bg-steel-blue {
     background-color: var(--color-steel-blue);

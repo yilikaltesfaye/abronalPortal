@@ -10,34 +10,34 @@
         </div>
         <form class="flex flex-col gap-3 sm:gap-5">
             <div class="flex flex-col gap-3">
-                <label for="givenname" class="text-lg sm:text-xl">Given Name</label>
+                <label for="fullname" class="text-lg sm:text-xl">Full Name</label>
                 <input
                 type="text"
-                id="givenname"
-                placeholder="Your Given Name"
+                id="fullname"
+                placeholder="Your Full Name"
                 required
-                class="outline-0 py-1 pl-3 font-bold capitalize rounded bg-white border"
+                class="outline-0 py-1 pl-3 font-bold rounded bg-white border"
                 />
             </div>
             <div class="flex flex-col gap-3">
-                <label for="fathername" class="text-lg sm:text-xl">Father's Name</label>
+                <label for="username" class="text-lg sm:text-xl">Username</label>
                 <input
                 type="text"
-                id="fathername"
-                placeholder="Your Father's Name"
+                id="username"
+                placeholder="Your Username"
                 required
-                class="outline-0 py-1 pl-3 font-bold capitalize rounded bg-white border"
+                class="outline-0 py-1 pl-3 font-bold rounded bg-white border"
                 />
             </div>
             <div class="flex flex-col gap-3">
-                <label for="lastname" class="text-lg sm:text-xl">Surname</label>
+                <label for="phone" class="text-lg sm:text-xl">Phone Number</label>
                 <input
-                type="text"
-                id="lastname"
-                placeholder="Your Grandfather's Name"
+                type="tel"
+                id="phone"
+                placeholder="Your Phone Number"
                 required
-                class="outline-0 py-1 pl-3 font-bold capitalize rounded bg-white border"
-                />
+                class="outline-0 py-1 pl-3 font-bold rounded bg-white border"
+                /> 
             </div>
             <div class="flex flex-col gap-3">
                 <label for="email" class="text-lg sm:text-xl">Email</label>
@@ -46,7 +46,7 @@
                 id="email"
                 placeholder="Your Email Address"
                 required
-                class="outline-0 py-1 pl-3 font-bold capitalize rounded bg-white border"
+                class="outline-0 py-1 pl-3 font-bold rounded bg-white border"
                 />
             </div>
             <div class="flex flex-col gap-3">
@@ -56,22 +56,20 @@
                 id="password"
                 placeholder="Password"
                 required
-                class="outline-0 py-1 pl-3 font-bold capitalize rounded bg-white border"
+                class="outline-0 py-1 pl-3 font-bold rounded bg-white border"
                 />
             </div>
-            <div class="flex flex-col gap-3">
+            @* <div class="flex flex-col gap-3">
                 <label for="profilepicture" class="text-xl">Profile Picture</label>
                 <input
                 type="file"
                 id="profilepicture"
                 required
-                class="outline-0 py-1 pl-3 border rounded font-bold capitalize cursor-pointer"
+                class="outline-0 py-1 pl-3 border rounded font-bold cursor-pointer"
                 />
-            </div>
+            </div> *@
             <div class="w-full mt-6">
-                @* <a href="" > *@
                     <button type="submit" class="flex w-full justify-center text-lg px-10 rounded-2xl py-2 border-2 bg-[#1B2240] border-[#1B2240] text-white cursor-pointer hover:bg-inherit hover:text-[#1B2240] transition-all duration-200 ease-in">Join</button>
-                @* </a> *@
             </div>
         </form>
         <p class="text-center">Already Joined? <a asp-area="" asp-controller="login" asp-action="index"  class="underline hover:underline-offset-4 font-semibold">Login</a></p>

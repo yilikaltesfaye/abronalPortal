@@ -1,0 +1,23 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Users> signInManager
+
+<ul>
+    @if (signInManager.IsSignedIn(User))
+    {
+        <li>
+            <form asp-area="" asp-controller="login" asp-action="logout" method="post" class="flex items-center">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="text-lg font-medium hover:opacity-75 transition-all ease-in duration-300">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a asp-area="" asp-controller="login" asp-action="index" class="text-lg font-medium hover:opacity-75 transition-all ease-in duration-300">Login</a>
+        </li>
+        <li>
+            <a asp-area="" asp-controller="signup" asp-action="index" class="text-lg font-medium hover:opacity-75 transition-all ease-in duration-300">Sign Up</a>
+        </li>
+    }
+</ul>

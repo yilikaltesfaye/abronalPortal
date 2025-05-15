@@ -1,5 +1,8 @@
+@using abronalPortal.ViewModels
+@model LoginViewModel
 @{
-    ViewData["Title"] = "Login - ";
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
 }
 
 <div class="flex z-0 flex-col xl:px-40 justify-center items-center bg-steel-blue object-contain min-h-[86vh]">
@@ -8,33 +11,49 @@
             <h1 class="text-3xl sm:text-4xl">Welcome Back</h1>
             <p class="text-lg sm:text-2xl">Login Here</p>
         </div>
-        <form class="flex flex-col gap-3 sm:gap-5">
+        <form class="flex flex-col gap-3 sm:gap-5" asp-action="login" method="post">
+            @Html.AntiForgeryToken()
+            <div asp-asp-validation-summary="modelOnly" class="bg-red text-white"></div>
             <div class="flex flex-col gap-3">
-                <label for="email" class="text-lg sm:text-xl">Email</label>
+                <label asp-for="Email" class="text-lg sm:text-xl">Email</label>
                 <input
                 type="email"
-                id="email"
+                asp-for="Email"
                 placeholder="Your Email Address"
                 required
-                class="outline-0 py-1 pl-3 font-bold capitalize rounded bg-white border"
+                class="outline-0 py-1 pl-3 font-bold rounded bg-white border"
                 />
+                <span asp-validation-for="Email" class="bg-red text-white"></span>
             </div>
             <div class="flex flex-col gap-3">
-                <label for="password" class="text-lg sm:text-xl">Password</label>
+                <label asp-for="Password" class="text-lg sm:text-xl">Password</label>
                 <input
                 type="password"
-                id="password"
+                asp-for="Password"
                 placeholder="Password"
                 required
-                class="outline-0 py-1 pl-3 font-bold capitalize rounded bg-white border"
+                class="outline-0 py-1 pl-3 font-bold rounded bg-white border"
                 />
+                <span asp-validation-for="Password" class="bg-red text-white"></span>
+            </div>
+            <div class="flex items-center gap-2">
+                <a asp-area="" asp-controller="login" asp-action="forgotpassword" class="text-lg sm:text-xl underline">Forgot Password?</a>
             </div>
             <div class="w-full mt-6">
                 <a href="" >
-                    <button type="submit" class="flex w-full justify-center text-lg px-10 rounded-2xl py-2 border-2 bg-[#1B2240] border-[#1B2240] text-white cursor-pointer hover:bg-inherit hover:text-[#1B2240] transition-all duration-200 ease-in">Log In</button>
+                    <input type="submit" class="flex w-full justify-center text-lg px-10 rounded-2xl py-2 border-2 bg-[#1B2240] border-[#1B2240] text-white cursor-pointer hover:bg-inherit hover:text-[#1B2240] transition-all duration-200 ease-in" value="Log In" />
                 </a>
             </div>
         </form>
         <p class="text-center">Don't have an account? <a asp-area="" asp-controller="signup" asp-action="index" class="underline hover:underline-offset-4 font-semibold">Register</a></p>
+        <p class="text-center">Don't have an account? <a asp-area="" asp-controller="home" asp-action="index" class="underline hover:underline-offset-4 font-semibold">Back Home</a></p>
+        
     </div>
 </div>
+
+@section Scripts {
+    
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+}
