@@ -23,23 +23,30 @@ public class AuthController : Controller
     {
         return View();
     }
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(LoginViewModel model)
     {
-        if(!ModelState.IsValid)
+        if (!ModelState.IsValid)
         {
             return View(model);
         }
-
+        var user = await userManager.FindByEmailAsync(model.Email);
+        if (user == null)
+        {
+            ModelState.AddModelError(string.Empty, "user not found");
+            return View(model);
+        }
         var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
-        if(result.Succeeded)
+
+        if (result.Succeeded)
         {
             return RedirectToAction("Index", "Home");
         }
-        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-            return View(model);
+    
+
+        ModelState.AddModelError(string.Empty, "Invalid Email or Password.");
+        return View(model);
     }
-
-
 }
